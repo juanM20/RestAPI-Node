@@ -1,0 +1,21 @@
+{
+  "name": "restapi-node",
+  "version": "1.0.0",
+  "description": "Example of Rest API with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "prod": "NODE_ENV=production node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanM20/RestAPI-Node.git"
+  },
+  "author": "Juan Tellez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanM20/RestAPI-Node/issues"
+  },
+  "homepage": "https://github.com/juanM20/RestAPI-Node#readme"
+}
