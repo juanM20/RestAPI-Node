@@ -4,8 +4,14 @@ const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
 const config = require('./config');
 const fs = require('fs');
-const { parse } = require('path');
-const { type } = require('os');
+const _data = require('./lib/data');
+
+
+// Testing
+// @TODO delete this
+_data.delete('test', 'newFile', (err) => {
+    console.log('this was the error', err);
+});
 
 // Instantiate the HTTP server
 var httpServer = http.createServer((req, res) => {
@@ -15,7 +21,6 @@ var httpServer = http.createServer((req, res) => {
 httpServer.listen(config.httpPort, () => {
     console.log("The server is listening on port " + config.httpPort);
 });
-
 
 // Instantiate the HTTPS server
 var httpsServerOptions = {
