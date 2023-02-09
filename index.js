@@ -6,13 +6,12 @@ const config = require('./lib/config');
 const fs = require('fs');
 const _data = require('./lib/data');
 const helpers = require('./lib/helpers');
+const handlers = require('./lib/handlers');
 
 
 // Testing
 // @TODO delete this
-_data.delete('test', 'newFile', (err) => {
-    console.log('this was the error', err);
-});
+
 
 // Instantiate the HTTP server
 var httpServer = http.createServer((req, res) => {
@@ -48,7 +47,6 @@ var unifiedServer = (req, res) => {
 
     // Get the query string as an object
     var queryStringObject = parsedUrl.query;
-    queryStringObject = JSON.stringify(queryStringObject);
 
     // Get the HTTP method
     var method = req.method.toLowerCase();
@@ -81,7 +79,7 @@ var unifiedServer = (req, res) => {
 
         // Route the request to the handler specified in the router
         chosenHandler(data, (statusCode, payload) => {
-            statusCode = typeof (statusCode) == 'number' ? statusCode : 200;
+            statusCode = typeof (statusCode) == 'number' ? statusCode : 201;
             payload = typeof (payload) == 'object' ? payload : {};
             var payloadString = JSON.stringify(payload);
 
@@ -97,16 +95,6 @@ var unifiedServer = (req, res) => {
     });
 }
 
-var handlers = {};
-
-handlers.ping = (data, callback) => {
-    callback(200);
-};
-
-handlers.notFound = (data, callback) => {
-    callback(404);
-};
-
 var router = {
-    'ping': handlers.ping
+    'users': handlers.users
 };
